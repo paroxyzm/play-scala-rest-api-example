@@ -1,4 +1,4 @@
-package v1.post
+package v1.book
 
 import javax.inject.Inject
 
@@ -7,12 +7,12 @@ import play.api.routing.SimpleRouter
 import play.api.routing.sird._
 
 /**
-  * Routes and URLs to the PostResource controller.
+  * Routes and URLs to the BookResource controller.
   */
-class PostRouter @Inject()(controller: PostController) extends SimpleRouter {
-  val prefix = "/v1/posts"
+class BookRouter @Inject()(controller: BookController) extends SimpleRouter {
+  val prefix = "/v1/books"
 
-  def link(id: PostId): String = {
+  def link(id: BookId): String = {
     import com.netaporter.uri.dsl._
     val url = prefix / id.toString
     url.toString()

@@ -23,25 +23,25 @@ Play will start up on the HTTP port at http://localhost:9000/.   You don't need 
 If you call the same URL from the command line, you’ll see JSON. Using httpie, we can execute the command:
 
 ```
-http --verbose http://localhost:9000/v1/posts
+http --verbose http://localhost:9000/v1/books
 ```
 
 and get back:
 
 ```
-GET /v1/posts HTTP/1.1
+GET /v1/books HTTP/1.1
 ```
 
 Likewise, you can also send a POST directly as JSON:
 
 ```
-http --verbose POST http://localhost:9000/v1/posts title="hello" body="world"
+http --verbose POST http://localhost:9000/v1/books title="hello" body="world"
 ```
 
 and get:
 
 ```
-POST /v1/posts HTTP/1.1
+POST /v1/books HTTP/1.1
 ```
 
 ### Load Testing

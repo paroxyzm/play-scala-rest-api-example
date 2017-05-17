@@ -1,4 +1,4 @@
-package v1.post
+package v1.book
 
 import javax.inject.Inject
 
@@ -9,38 +9,38 @@ import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
 
 /**
-  * A wrapped request for post resources.
+  * A wrapped request for book resources.
   *
   * This is commonly used to hold request-specific information like
   * security credentials, and useful shortcut methods.
   */
-class PostRequest[A](request: Request[A], val messages: Messages)
+class BookRequest[A](request: Request[A], val messages: Messages)
     extends WrappedRequest(request)
 
 /**
-  * The default action for the Post resource.
+  * The default action for the Book resource.
   *
   * This is the place to put logging, metrics, to augment
   * the request with contextual data, and manipulate the
   * result.
   */
-class PostAction @Inject()(messagesApi: MessagesApi)(
+class BookAction @Inject()(messagesApi: MessagesApi)(
     implicit ec: ExecutionContext)
-    extends ActionBuilder[PostRequest]
+    extends ActionBuilder[BookRequest]
     with HttpVerbs {
 
-  type PostRequestBlock[A] = PostRequest[A] => Future[Result]
+  type BookRequestBlock[A] = BookRequest[A] => Future[Result]
 
   private val logger = org.slf4j.LoggerFactory.getLogger(this.getClass)
 
   override def invokeBlock[A](request: Request[A],
-                              block: PostRequestBlock[A]): Future[Result] = {
+                              block: BookRequestBlock[A]): Future[Result] = {
     if (logger.isTraceEnabled()) {
       logger.trace(s"invokeBlock: request = $request")
     }
 
     val messages = messagesApi.preferred(request)
-    val future = block(new PostRequest(request, messages))
+    val future = block(new BookRequest(request, messages))
 
     future.map { result =>
       request.method match {
